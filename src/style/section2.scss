@@ -1,0 +1,1042 @@
+@use './variables' as *;
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+.section2 {
+
+position:relative;
+width:100%;
+min-height:100vh;
+padding:160px 0;
+display:block;
+
+.section2-inner{
+
+max-width:1440px;
+margin:0 auto;
+}
+
+/* ===== LEFT ===== */
+
+.playlist-list{
+
+width:35%;
+margin-top:-30px;
+
+.section-title{
+font-size:28px;
+margin-bottom:10px;
+}
+
+.section-desc{
+margin-bottom:40px;
+font-size:14px;
+opacity:.6;
+}
+
+/* wrapper */
+
+.playlist-wrapper{
+
+cursor:pointer;
+user-select:none;
+
+transition:transform .35s cubic-bezier(.22,1,.36,1);
+will-change:transform;
+
+}
+
+.playlist-wrapper:active{
+
+cursor:grabbing;
+
+}
+
+/* 카드 */
+
+.playlist-card{
+
+background:#e8e6e3;
+border-radius:30px;
+padding:25px;
+margin-bottom:30px;
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+transition:
+transform .45s cubic-bezier(.22,1,.36,1),
+opacity .35s,
+box-shadow .35s;
+
+}
+
+/* active 카드 */
+
+.playlist-card.active{
+
+transform:scale(1.05);
+opacity:1;
+
+box-shadow:
+0 10px 30px rgba(0,0,0,.25),
+0 0 25px rgba(255,255,255,.4);
+
+}
+
+/* 작은 카드 */
+
+.playlist-card.small{
+
+transform:scale(.9);
+opacity:.45;
+
+}
+
+/* hover */
+
+.playlist-card:hover{
+
+transform:scale(1.02);
+
+}
+
+/* 썸네일 */
+
+.card-thumb{
+
+width:80px;
+height:80px;
+
+border-radius:20px;
+
+background-size:contain;
+background-position:center;
+background-repeat:no-repeat;
+
+}
+
+}
+
+/* nav */
+
+.playlist-nav {
+
+background:none;
+border:none;
+font-size:24px;
+cursor:pointer;
+color: #333;
+/* margin:10px 230px; */
+width: 500px;
+
+&.up{
+align-self:center;
+}
+
+&.down{
+align-self:center;
+}
+
+}
+
+/* ===== RIGHT ===== */
+
+.detail-top-wrapper{
+position:relative;
+}
+
+
+.playlist-detail{
+
+position:absolute;
+top:130px;
+right:0;
+
+width:52%;
+
+background:#eeeeeee3;
+
+border-radius:40px 0 0 40px;
+
+padding:50px;
+
+overflow:hidden;
+
+padding-right:0;
+
+.detail-top{
+
+display:flex;
+gap:40px;
+
+.album-cover{
+
+width:250px;
+height:250px;
+
+border-radius:30px;
+
+background-position:center;
+background-repeat:no-repeat;
+background-size: cover;
+
+}
+
+.detail-info{
+width: 450px;
+min-width:0;
+
+.track-title{
+
+width:100%;
+overflow:hidden;
+white-space:nowrap;
+text-overflow:ellipsis;
+
+.track-title-text{
+display:inline-block;
+padding-right:40px;
+}
+
+}
+
+@media (max-width:1440px){
+
+
+.track-title-text{
+
+animation:titleMarquee 8s linear infinite;
+animation-delay:0.8s;
+
+}
+
+}
+
+@keyframes titleMarquee{
+
+0%{transform:translateX(0);}
+30%{transform:translateX(0);}
+100%{transform:translateX(-100%);}
+
+}
+
+/* waveform */
+
+.waveform{
+
+display:flex;
+gap:3px;
+
+margin:8px 0 15px;
+
+height:5px;
+
+}
+
+.wave{
+
+width:3px;
+height:10px;
+background:#aaa;
+
+}
+
+.wave.play{
+
+animation:waveAnim 1s infinite ease-in-out;
+
+}
+
+.wave:nth-child(odd){
+
+animation-delay:.2s;
+
+}
+
+.wave:nth-child(even){
+
+animation-delay:.4s;
+
+}
+
+@keyframes waveAnim{
+
+0%{height:6px;}
+50%{height:18px;}
+100%{height:6px;}
+
+}
+
+/* progress */
+
+.progress-bar{
+max-width:520px;
+margin:25px auto 0;
+width:100%;
+height:4px;
+
+background:#ccc;
+margin:30px 0;
+
+position:relative;
+cursor:pointer;
+
+.progress{
+
+height:100%;
+background:#555;
+}
+
+/* 👇 보이지 않는 드래그 영역 */
+
+.progress-hitbox{
+
+position:absolute;
+
+top:-12px;
+left:0;
+
+width:100%;
+height:28px;
+
+}
+
+/* knob */
+
+.progress-knob{
+
+position:absolute;
+
+top:50%;
+transform:translate(-50%,-50%);
+
+width:14px;
+height:14px;
+
+border-radius:50%;
+
+background:#333;
+border:2px solid #333;
+
+box-shadow:0 0 6px rgba(0,0,0,.25);
+
+pointer-events:none;
+
+transition:transform .2s;
+
+}
+
+/* 👇 hover 효과 */
+
+&:hover{
+
+.progress-knob{
+transform:translate(-50%,-50%) scale(1.2);
+}
+
+}
+
+}
+
+/* player */
+
+.player-controls{
+display:flex;
+justify-content:space-between;
+margin:0 auto;
+padding-top:20px;
+
+.desc-btn{
+
+padding:12px 30px;
+
+border-radius:25px;
+border:none;
+
+background:#444;
+color:white;
+
+cursor:pointer;
+
+}
+
+.prev-btn,
+.play-btn,
+.next-btn{
+
+border:none;
+background:none;
+
+font-size:28px;
+
+cursor:pointer;
+
+color:#333;
+
+transition:.3s;
+
+&:hover{
+
+transform:scale(1.15);
+color:#000;
+
+}
+
+}
+
+}
+
+  /* description panel */
+
+  .desc-panel{
+
+  max-height:0;
+  overflow:hidden;
+
+  opacity:0;
+
+  transition:
+  max-height .45s cubic-bezier(.22,1,.36,1),
+  opacity .35s ease;
+
+  margin-top:10px;
+
+  }
+
+  .desc-panel.open{
+
+  max-height:160px;
+  opacity:1;
+  width: 80%;
+
+  }
+
+  .desc-divider{
+
+  width:100%;
+  height:1px;
+  background:#cacaca;
+
+  margin:15px 0;
+
+  }
+
+  .desc-text{
+
+  font-size:12px;
+  opacity:.7;
+  line-height:1.5;
+  width: 100%;
+
+  }
+
+  .desc-artist{
+
+  font-size:13px;
+  opacity:.7;
+  margin-bottom:6px;
+
+  }
+
+  .desc-tags{
+
+  margin-top:10px;
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap;
+
+  }
+
+  .tag{
+
+  font-size:11px;
+  padding:4px 8px;
+  border-radius:12px;
+  background:#ddd;
+
+  }
+}
+
+}
+
+/* detail list */
+
+.detail-subtitle{
+
+margin:50px 0 20px;
+
+}
+
+/* swiper fix */
+
+.detail-swiper{
+
+overflow:visible;
+
+.swiper{
+overflow:visible;
+}
+
+.swiper-wrapper{
+overflow:visible;
+}
+
+.swiper-slide{
+overflow:visible;
+width:160px;
+}
+
+}
+
+/* detail card */
+
+.detail-card{
+
+width:140px;
+flex-shrink:0;
+
+cursor:pointer;
+
+.detail-thumb{
+
+width:140px;
+height:140px;
+
+border-radius:20px;
+
+margin-bottom:10px;
+
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
+
+transition:.3s;
+
+}
+
+p{
+
+font-size:12px;
+opacity:.6;
+
+}
+
+&.active{
+
+.detail-thumb{
+
+transform:scale(1.08);
+box-shadow:0 0 20px rgba(0,0,0,.25);
+
+}
+
+p{
+
+opacity:1;
+font-weight:600;
+
+}
+
+}
+
+}
+
+}
+
+/* ===== 날씨 crossfade ===== */
+
+.section2.fade{
+
+animation:weatherFade .5s ease;
+
+}
+
+@keyframes weatherFade{
+
+0%{opacity:0;}
+100%{opacity:1;}
+
+}
+}
+
+
+
+
+
+/* 반응형 */
+/* 반응형 */
+/* 반응형 */
+
+
+/* 1440px */
+/* 1440px */
+/* 1440px */
+@media (max-width:1440px){
+
+.section2{
+
+.section2-inner{
+max-width:1200px;
+}
+
+
+
+.playlist-list{
+
+width:38%;
+
+.section-title{
+font-size:24px;
+}
+
+.playlist-card{
+padding:20px;
+}
+
+.progress-bar {
+width: 100%;
+}
+
+.card-thumb{
+width:70px;
+height:70px;
+}
+
+}
+
+.playlist-detail{
+
+width:56%;
+padding:40px;
+
+.detail-top{
+
+.album-cover{
+width:220px;
+height:220px;
+flex-shrink:0;
+}
+
+}
+
+}
+
+.detail-card{
+
+.detail-thumb{
+width:120px;
+height:120px;
+}
+
+}
+
+}
+
+}
+
+/* 1024px */
+/* 1024px */
+/* 1024px */
+@media (max-width:1024px){
+
+.section2{
+
+.section2-inner{
+max-width:900px;
+padding:0 30px;
+}
+
+.playlist-nav {
+width: 280px;
+}
+
+.playlist-list{
+width:35%;
+}
+
+.playlist-detail{
+
+width:58%;
+padding:35px;
+
+.detail-top{
+
+gap:20px;
+
+.album-cover{
+width:180px;
+height:180px;
+}
+
+.detail-info{
+
+display:flex;
+flex-direction:column;
+
+.waveform{
+margin-bottom:10px;
+}
+
+.desc-tags{
+  gap: 4px;
+}
+.tag{
+  font-size: 9px;
+}
+
+.tracktext{display: none;}
+
+/* 버튼 위로 */
+
+.player-controls{
+  gap: 50px;
+}
+
+.progress-bar{
+width:100%;
+}
+
+.desc-btn{
+display:none;
+}
+
+.desc-panel{
+max-height:200px;
+opacity:1;
+width:100%;
+
+}
+
+}
+
+}
+
+}
+
+/* detail card */
+
+.detail-card{
+
+.detail-thumb{
+width:100px;
+height:100px;
+}
+
+}
+
+}
+}
+
+/* 720px */
+/* 720px */
+/* 720px */
+@media (max-width:720px){
+
+.section2{
+
+padding:100px 0;
+
+.section2-inner{
+max-width:640px;
+padding:0 20px;
+}
+
+/* 플레이리스트 상단 */
+.section2-inner .section-desc{
+  margin-bottom: 15px;
+}
+
+.playlist-list{
+
+width:100%;
+margin-bottom:10px;
+
+.section-title{
+text-align:center;
+}
+
+.section-desc{
+text-align:center;
+}
+
+.playlist-wrapper{
+
+display:flex;
+gap:15px;
+padding-bottom:10px;
+margin: 0 auto;
+
+}
+
+.playlist-card{
+
+min-width:175px;
+height: 80px;
+margin: 10px auto;
+display: flex;
+border-radius: 20px;
+
+}
+
+.card-thumb{
+  border-radius: 15px;
+  width: 50px;
+  height: 50px;
+}
+.card-text h3{
+  font-size: 13px;
+}
+.card-text p{
+  display: none;
+}
+
+.playlist-nav{
+display:none;
+}
+
+}
+
+/* 플레이어 */
+
+.playlist-detail{
+
+position:relative;
+top:auto;
+right:auto;
+box-shadow: 1px 1px 5px #555;
+
+width:80%;
+
+border-radius:30px;
+padding:35px;
+margin:0 auto;
+
+.detail-subtitle {
+  margin: 20px 0 20px;
+}
+
+.detail-top{
+
+display:flex;
+flex-wrap:wrap;
+gap:20px;
+
+/* 앨범 */
+
+.album-cover{
+width:200px;
+height:200px;
+flex-shrink:0;
+}
+
+/* 오른쪽 텍스트 */
+
+.detail-info{
+flex:1;
+min-width:0;
+
+display:flex;
+flex-direction:column;
+}
+
+/* progress → 아래줄 */
+
+.progress-bar{
+width:100%;
+order:3;
+margin-top:25px;
+}
+
+/* player → progress 아래 */
+
+.player-controls{
+width:100%;
+order:4;
+
+display:flex;
+justify-content:center;
+
+gap:auto;
+margin-top:10px;
+}
+
+}
+
+}
+
+}
+}
+
+/* 480px */
+/* 480px */
+/* 480px */
+@media (max-width:480px){
+
+.section2{
+
+padding:100px 0;
+
+.section2-inner{
+max-width:640px;
+padding:0 20px;
+}
+
+/* 플레이리스트 상단 (건드리지 않음) */
+
+.playlist-list{
+
+width:100%;
+
+
+.section-title{
+text-align:center;
+}
+
+.section-desc{
+text-align:center;
+}
+
+.playlist-wrapper{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:15px;
+overflow:visible;
+}
+
+.playlist-card{
+width:220px;
+flex-shrink:0;
+}
+
+.playlist-nav{
+display:flex;
+align-items:center;
+justify-content:center;
+width:40px;
+height:40px;
+border-radius:50%;
+}
+
+.playlist-nav.left{
+order:1;
+}
+
+.playlist-card{
+order:2;
+}
+
+.playlist-nav.right{
+order:3;
+}
+
+.playlist-nav.up,
+.playlist-nav.down{
+  display:none;
+}
+
+}
+
+/* 플레이어 */
+
+.playlist-detail{
+
+position:relative;
+top:auto;
+right:auto;
+
+width:80%;
+
+border-radius:30px;
+padding:35px;
+margin:0 auto;
+
+.detail-top{
+
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:20px;
+
+/* 앨범 */
+
+.album-cover{
+width:180px;
+height:180px;
+}
+
+/* 텍스트 */
+
+.detail-info{
+width:100%;
+text-align:center;
+
+.track-title .track-title-text {
+  padding-right: 0;
+  margin-bottom: 10px;
+}
+
+.waveform{
+  /* margin: 15px auto; */
+  display: none;
+}
+}
+
+.detail-info .desc-tags{
+  display: block;
+}
+}
+
+
+
+/* progress 전체 width */
+
+.progress-bar{
+width:100%;
+margin-top:20px;
+}
+
+/* player 아래 */
+
+.player-controls{
+
+margin-top:15px;
+
+display:flex;
+justify-content:center;
+
+gap:80px;
+
+width:100%;
+
+}
+
+.detail-subtitle{
+  text-align: center;
+}
+
+.detail-swiper .swiper-slide{
+  width:90px;
+}
+.detail-card {
+    width: 90px;
+
+    p{
+      text-align: center;
+    }
+  }
+.detail-card .detail-thumb{
+  width:90px;
+  height:90px;
+}
+
+}
+
+}
+}

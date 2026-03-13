@@ -1,0 +1,61 @@
+@use './../../style/variables' as *;
+
+.loader-wrapper{
+    background: $sub;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+}
+
+.loader{
+
+    display: flex;
+    gap: 8px;
+
+    margin-bottom: 20px;
+
+}
+
+.column{
+
+    display: flex;
+    flex-direction: column-reverse;
+
+    gap: 3px;
+
+}
+
+.block{
+
+    width: 10px;
+    height: 8px;
+
+    border-radius: 2px;
+
+    opacity: .2;
+
+    transition: all .15s ease;
+
+}
+
+.block.active{
+
+    opacity: 1;
+
+}
+
+.loading-text{
+
+    font-size: 14px;
+    letter-spacing: 2px;
+
+    color: #888;
+
+}
