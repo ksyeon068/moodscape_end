@@ -12,7 +12,18 @@ import { MdOutlineEqualizer, MdWaves } from "react-icons/md";
 import { WiDaySunny, WiCloudy, WiRain, WiSnow, WiThunderstorm, WiFog, WiDayCloudy } from "react-icons/wi";
 
 const Section1 = () => {
-  const { WEATHER_API_KEY } = useApi();
+  const { WEATHER_API_KEY, setTestWeather, weather: contextWeather } = useApi();
+  const convertToApiWeather = (type) => {
+  const map = {
+      sunny: "Clear",
+      cloudy: "Clouds",
+      rainy: "Rain",
+      stormy: "Thunderstorm",
+      snowy: "Snow",
+      misty: "Mist"
+    };
+    return map[type] || null;
+  };
 
   const [isMusicList, setIsMusicList] = useState(false);
   const [isWeatherDetail, setIsWeatherDetail] = useState(false);
@@ -79,7 +90,6 @@ const Section1 = () => {
       console.warn("API 키가 없습니다. .env 파일을 확인해주세요.");
       return;
     }
-
     const fetchAllWeather = async (lat, lon) => {
       try {
         const weatherRes = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}&units=metric&lang=kr`);
@@ -91,7 +101,8 @@ const Section1 = () => {
         const airRes = await axios.get(`https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}`);
         setAirQuality(airRes.data);
 
-        const weatherMain = weatherRes.data.weather[0].main;
+        const weatherMain = convertToApiWeather(contextWeather) 
+        || weatherRes.data.weather[0].main;
         
         const themeMap = {
           'Clear': 'theme-sunny', 'Clouds': 'theme-clouds', 'Rain': 'theme-rain',
@@ -122,7 +133,7 @@ const Section1 = () => {
           fetchAllWeather(37.5665, 126.9780);
         }
       );
-    }, [WEATHER_API_KEY]); 
+    }, [WEATHER_API_KEY, contextWeather]); 
 
   const today = new Date();
   const dateString = `${today.getFullYear()} ${(today.getMonth() + 1).toString().padStart(2, '0')} ${today.getDate().toString().padStart(2, '0')}`;
@@ -229,6 +240,15 @@ const Section1 = () => {
 
   return (
     <section className={`hero-container ${weatherClass}`}>
+      <div className="weather-test-buttons test-weather">
+        <button onClick={() => setTestWeather("sunny")}>맑음</button>
+        <button onClick={() => setTestWeather("cloudy")}>흐림</button>
+        <button onClick={() => setTestWeather("rainy")}>비</button>
+        <button onClick={() => setTestWeather("stormy")}>천둥</button>
+        <button onClick={() => setTestWeather("snowy")}>눈</button>
+        <button onClick={() => setTestWeather("misty")}>안개</button>
+        <button onClick={() => setTestWeather(null)}>실제날씨</button>
+      </div>
       <div className="inner" onClick={() => { setIsMusicList(false); setIsWeatherDetail(false); }}>
 
         <audio 
@@ -237,7 +257,7 @@ const Section1 = () => {
         />
 
         {/* --- [1] 기본 플레이어 위젯 --- */}
-        <div className={`music-widget ${isMusicList ? 'hidden' : ''}`} onClick={(e) => e.stopPropagation()}>
+        <div className={`music-widget ${isMusicList ? 'hidden' : ''} ${isWeatherDetail ? 'hidden-mobile' : ''}`} onClick={(e) => e.stopPropagation()}>
           <div className="player-view">
             <div className="progress-area">
               <span className="time">{formatTime(currentTime)}</span>

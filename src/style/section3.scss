@@ -323,7 +323,7 @@ body{
   .weather-section{
     .section-head{
         margin-bottom: 60px;
-        max-width: 1024px;
+        max-width: 1180px;
       //왼쪽텍스트
         .left{
           p{
@@ -361,6 +361,7 @@ body{
     }
     //스와이퍼영역
     .swiper-area {
+      margin-bottom: 150px;
         .swiper-slide {
           .slide-content {
             border-radius: 25px;
@@ -411,6 +412,14 @@ body{
         border-radius:20px;
       }
     }
+    .swiper-area {
+      margin-bottom: 80px;
+        .swiper-slide {
+          .slide-content {
+            border-radius: 20px;
+          }
+        }
+      }
     }
 }
 @media screen and (max-width: 960px) {
@@ -451,6 +460,14 @@ body{
     .weather-filter{
         margin-bottom:10px;
     }
+    .swiper-area {
+      margin-bottom: 80px;
+        .swiper-slide {
+          .slide-content {
+            border-radius: 20px;
+          }
+        }
+      }
     }
 }
 @media screen and (max-width: 720px) {
@@ -517,6 +534,7 @@ body{
     }
     //스와이퍼영역
     .swiper-area {
+      margin-bottom: 80px;
         .swiper-slide {
           .slide-content {
             border-radius: 20px;
@@ -529,6 +547,52 @@ body{
   .weather-section{
     .section-head{
         max-width: 310px;
+        //유튜브버튼
+        .right{
+          .youtube-btn{
+            padding:5px 20px;
+            border-radius:10px;
+            font-size: 14px;
+          }
+        }
+      }
+    .pick-label{
+      span{
+        padding: 4px 18px; border-radius: 20px;
+        font-size: 12px; margin-bottom: 8px;
+        font-weight: 300;
+      }
+    }
+    //날씨버튼
+    .weather-filter{
+      margin: 0 auto;
+      max-width: 250px;
+      margin-bottom:5px;
+      gap:10px;
+      display: flex;
+      flex-wrap: wrap;
+      button{
+        width: 25%;
+        padding:8px 5px;
+        border-radius:15px;
+        font-weight:500;
+        font-size: 11px;
+      }
+    }
+    //스와이퍼영역
+    .swiper-area {
+        .swiper-slide {
+          .slide-content {
+            border-radius: 15px;
+          }
+        }
+      }
+    }
+}
+@media screen and (max-width: 350px) {
+  .weather-section{
+    .section-head{
+        max-width: 280px;
         //유튜브버튼
         .right{
           .youtube-btn{

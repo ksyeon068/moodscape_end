@@ -62,8 +62,9 @@ const weatherMood = {
 const Section2 = () => {
 
   const { weather } = useApi();
+  const currentWeather = weather || "sunny";
   /* const [weather, setWeater] = useState("rainy") */
-  const weatherFolder = weatherFolders[weather] || "sunshine-scene";
+  const weatherFolder = weatherFolders[currentWeather] || "sunshine-scene";
 
   const playlists = [1,2,3,4];
 
@@ -98,7 +99,7 @@ const Section2 = () => {
   const audioRef = useRef(new Audio());
 
     const trackData =
-    musicData?.[weather]?.[`playlist${activePlaylist}`]?.[trackIndex];
+    musicData?.[currentWeather]?.[`playlist${activePlaylist}`]?.[trackIndex];
 
   const getVisiblePlaylists = () => {
 
@@ -325,7 +326,7 @@ onClick={()=>handleCardClick(index)}
 
 <div className="card-text">
 <h3>Playlist {item}</h3>
-<p>{weatherText[weather]} Mood Music</p>
+<p>{weatherText[currentWeather]} Mood Music</p>
 </div>
 
 <div
@@ -413,12 +414,12 @@ backgroundImage:`url(/music/${weatherFolder}/playlist${item}/cover1.jpg)`
   </p>
   
   <p className="desc-text">
-  {weatherMood[weather]?.desc}
+  {weatherMood[currentWeather]?.desc}
   </p>
   
   <div className="desc-tags">
   
-  {weatherMood[weather]?.tag.map((tag,i)=>(
+  {weatherMood[currentWeather]?.tag.map((tag,i)=>(
   <span key={i} className="tag">
   #{tag}
   </span>
@@ -499,8 +500,16 @@ grabCursor={true}
 className="detail-swiper"
 breakpoints={{
   0:{
+    slidesPerView:2,
+    spaceBetween:20
+  },
+  380:{
+    slidesPerView:2,
+    spaceBetween:30
+  },
+  420:{
     slidesPerView:3,
-    spaceBetween:12
+    spaceBetween:30
   },
   481:{
     slidesPerView:3,

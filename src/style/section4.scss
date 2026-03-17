@@ -132,7 +132,7 @@
         overflow: hidden;
         z-index: 5;
         opacity: .8;
-        box-shadow: 1px 8px 10px #888;
+        box-shadow: 1px 8px 10px #00000054;
 
          img {
             position: absolute; // 1. 모든 이미지를 한곳에 겹침
@@ -340,6 +340,7 @@
                         font-size: 20px;
                         display: inline-block;
                         margin-bottom: 10px;
+                        width: 90%;
                     }
                 }
             }
@@ -1253,7 +1254,7 @@
 
             .text6 { //날씨가 만들어내는~
                 top: 213vh;
-                p{font-weight: 400; font-size: 14px; color: $sub;}
+                p{font-weight: 400; font-size: 14px;}
             }
 
             .bottom-text.text7 { //당신의 환경에 가장 어울리는~
@@ -1394,7 +1395,148 @@
 
             .text6 { //날씨가 만들어내는~
                 top: 220vh;
-                p{font-weight: 400; font-size: 13px; color: $sub; letter-spacing: 2px;}
+                p{font-weight: 400; font-size: 13px; letter-spacing: 2px;}
+            }
+
+            .bottom-text.text7 { //당신의 환경에 가장 어울리는~
+                top: 245vh;
+                p{font-size: 18px; font-weight: 500;}
+            }
+        }
+
+
+        .aboutLast{
+            height: 36vh;
+
+            .lastTextBox{
+
+                .texts{
+                    padding: 0 30px;
+
+                    h2{
+                        font-size: 28px; 
+                        letter-spacing: 5px;
+                        margin-bottom: 30px;
+                    }
+                    p{
+                        letter-spacing: .5px;
+                        font-weight: 300;
+                        font-size: 11.5px;
+
+                        span{
+                            font-weight: 500;
+                            font-size: 13px;
+                            display: inline-block;
+                            margin-bottom: 10px;
+                        }
+                    }
+                }
+            }
+            .aboutImgBox{
+                display: flex;
+                flex-wrap: wrap;
+
+                img{
+                    width: 50%;
+                    height: 18vh;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 350px) {
+        height: 350vh;
+
+        .top_des {
+            width: 100%;
+            padding-top: 50px;
+            position: absolute;
+            top: 0;
+            z-index: 2;
+
+            h2 {
+                display: flex;
+                font-family: $font-En;
+                font-weight: 700;
+                letter-spacing: 2.5px;
+                font-size: 24px;
+                color: $text-color;
+            }
+
+            .left_des {
+                justify-content: flex-start;
+                width: 100%;
+                white-space: nowrap;
+                padding-bottom: 10px;
+            }
+
+            .right_des {
+                justify-content: flex-end;
+                width: 100%;
+                white-space: nowrap;
+            }
+        }
+
+        .center-wrapper {
+            height: 250vh;
+            padding-top: 0vh; 
+        }
+
+        .sticky-circle {
+            top: 50vh;
+            width: 240px;
+            height: 240px;
+            opacity: .6;
+        }
+
+        .scroll-content {
+            top: 0; 
+            width: 100%; 
+            padding: 50px 0; 
+            min-height: 250vh;
+            z-index: 6;
+
+            p, h3 {
+                line-height: 1.5;
+                font-size: 13px;
+                letter-spacing: 2.5px;
+                font-weight: 400;
+            }
+
+            .left-content{left: 50%; transform: translateX(-50%); text-align: center; width: 100%;}
+            .right-content{right: 0; transform: translateX(0%); text-align: center; width: 100%;}
+
+            .text1 { //변화하는 환경 속에서
+                top: 0vh;
+
+                h3{font-size: 20px;}
+                p{font-size: 13px; font-weight: 400; margin-top: 20px;}
+            }
+
+            .text2 { //하루의 기분~
+                top: 45vh;
+
+                p{font-size: 13px; font-weight: 400; margin-top: 50px;}
+            }
+
+            .text3 { //이처럼 날씨는~
+                top: 90vh;
+                span{display: block;}
+            }
+
+            .text4 { //moodscape는 오늘의 날씨 정보를 기반으로
+                top: 130vh;
+                span{font-family: $font-En; font-size: 18px; font-weight: 500;}
+            }
+
+            .text5 { //단순히
+                top: 175vh;
+                p{font-size: 13px; font-weight: 400;}
+            }
+
+            .text6 { //날씨가 만들어내는~
+                top: 220vh;
+                p{font-weight: 400; font-size: 13px; letter-spacing: 2px;}
             }
 
             .bottom-text.text7 { //당신의 환경에 가장 어울리는~

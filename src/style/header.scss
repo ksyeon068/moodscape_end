@@ -4,7 +4,7 @@ body {
 }
 .header {
     z-index: 1000;
-    position: absolute;
+    position: fixed;
     top: 20px;
     left: 20px;
     right: 20px;
@@ -12,12 +12,11 @@ body {
     height: 70px;
     backdrop-filter: blur(5px);
     border-radius: 20px;
-    transform: translateY(0);
     transition: transform 0.3s ease, background 0.3s ease;
   .header-inner{
         max-width: 1440px;
-        margin: auto;
         height: 100%;
+        margin: 0 auto;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -48,103 +47,50 @@ body {
   
 }
 
-/* 스크롤 내려오면 고정 */
-.header.fixed{
-  position: fixed;
-  top: -100px; 
-  transform: translateY(120px);
-  transition: transform 0.3s ease;
-}
 
 /* 날씨별 색상 */
 
-.header.sunny{
-  background: rgba($sunny, 0.6);
-}
-
-.header.cloudy{
-  background: rgba($clouds, 0.6);
-}
-
-.header.rainy{
-  background: rgba($rain, 0.6);
-}
-
-.header.stormy{
-  background: rgba($thunder, 0.6);
-}
-
-.header.snowy{
-  background: rgba($snow, 0.6);
-}
-
-.header.misty{
-  background: rgba($mist, 0.6);
-}
+.header.sunny{background: rgba($sunny, 0.6);}
+.header.cloudy{background: rgba($clouds, 0.6);}
+.header.rainy{background: rgba($rain, 0.6);}
+.header.stormy{background: rgba($thunder, 0.6);}
+.header.snowy{background: rgba($snow, 0.6);}
+.header.misty{background: rgba($mist, 0.6);}
 
 
 //반응형
 @media screen and (max-width: 1440px) {
   .header {
     height: 55px;
-  .header-inner{
-        max-width: 1280px;
-    .logo{
-        img{
-          width: 90px;
-        }
+    .header-inner{
+          max-width: 1280px;
+      .logo{
+          img{
+            width: 90px;
+          }
+      }
     }
-    .menu{
-        display: flex;
-        gap: 40px;
-
-        button{
-        font-size: 15px;
-        }
-    }
-  }
   }
 }
 @media screen and (max-width: 1280px) {
   .header {
-    height: 50px;
-  .header-inner{
-        max-width: 1024px;
-    .logo{
-        img{
-          width: 85px;
-        }
-    }
-    .menu{
-        display: flex;
-        gap: 30px;
+    .header-inner{
+          max-width: 1024px;
+      .menu{
+          gap: 30px;
 
-        button{
-        font-size: 13px;
-        }
-    }
-  } 
+          button{
+          font-size: 13px;
+          }
+      }
+    } 
   }
 }
 @media screen and (max-width: 1024px) {
   .header {
-    height: 50px;
-  .header-inner{
-        max-width: 800px;
-    .logo{
-        img{
-          width: 85px;
-        }
-    }
-    .menu{
-        display: flex;
-        gap: 30px;
-
-        button{
-        font-size: 13px;
-        }
-    }
-  } 
+    .header-inner{
+          max-width: 800px;
+    } 
   }
 }
 @media screen and (max-width: 960px) {
@@ -155,13 +101,6 @@ body {
     .logo{
         img{
           width: 85px;
-        }
-    }
-    .menu{
-        display: flex;
-        gap: 30px;
-        button{
-        font-size: 13px;
         }
     }
   } 
@@ -176,8 +115,6 @@ body {
     width: 100%;
     border-radius: 0;
     .header-inner{
-        max-width: 520px;
-        display: flex;
         flex-direction: column;
         justify-content: center;
       .logo{
@@ -187,42 +124,24 @@ body {
           }
       }
       .menu{
-          display: flex;
           gap: 50px;
-          button{
-          font-size: 14px;
-          }
+          button{font-size: 14px;}
           .mohide{display: none;}
       }
     } 
   }
-  .header.fixed{
-  position: fixed;
-  /* top: -100px;  */
-  transform: translateY(100px);
-  transition: transform 0.3s ease;
-}
+  
 }
 @media screen and (max-width: 480px) {
   .header{
     height: 100px;
     .header-inner{
-        max-width: 310px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
       .logo{
-        margin-bottom: 10px;
-          img{
-            width: 90px;
-          }
+          img{width: 90px;}
       }
       .menu{
-          display: flex;
           gap: 40px;
-          button{
-          font-size: 12px;
-          }
+          button{font-size: 12px;}
       }
     } 
   }

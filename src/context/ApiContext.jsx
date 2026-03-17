@@ -6,26 +6,21 @@ export const ApiProvider = ({ children }) => {
 
   const WEATHER_API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
 
-
   const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [testWeather, setTestWeather] = useState(null);
 
   const getWeatherType = (apiWeather) => {
 
     const weatherMap = {
       Clear: "sunny",
-
       Clouds: "cloudy",
       "Few Clouds": "cloudy",
       Overcast: "cloudy",
-
       Rain: "rainy",
       Drizzle: "rainy",
-
       Thunderstorm: "stormy",
-
       Snow: "snowy",
-
       Mist: "misty",
       Fog: "misty",
       Haze: "misty"
@@ -34,7 +29,6 @@ export const ApiProvider = ({ children }) => {
     return weatherMap[apiWeather] || null;
   };
 
- 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
 
@@ -57,8 +51,18 @@ export const ApiProvider = ({ children }) => {
     });
   }, []);
 
+  const currentWeather = testWeather || weather;
+
   return (
-    <ApiContext.Provider value={{ WEATHER_API_KEY, getWeatherType, weather, loading  }}>
+    <ApiContext.Provider 
+      value={{ 
+        WEATHER_API_KEY,
+        getWeatherType,
+        weather: currentWeather,
+        loading,
+        setTestWeather
+      }}
+    >
       {children}
     </ApiContext.Provider>
   );

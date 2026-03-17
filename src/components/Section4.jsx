@@ -185,7 +185,7 @@ const Section4 = () => {
 				<div className="lastTextBox">
 					<div className="texts">
 						<h2>MOODSCAPE</h2>
-						<p>	<span>날씨와 음악을 하나의 흐름으로 연결한 새로운 방식의 추천 서비스</span><br />
+						<p>	<span>날씨와 음악을 하나의 흐름으로 연결한 <br />새로운 방식의 추천 서비스</span><br />
 							실시간 기상 데이터를 분석하여 상황에 적합한 사운드를 연결하고<br />
 							사용자가 별도의 탐색 없이도 자연스럽게 음악을 선택할 수 있도록 돕습니다.
 						</p>
